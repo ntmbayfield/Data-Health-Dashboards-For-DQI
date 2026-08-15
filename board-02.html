@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board 02 — Integration health — central view</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<nav class="nav"><a class="home" href="index.html">All dashboards</a><div class="pager"><a href="board-01.html">← Board 01</a><a href="board-03.html">Board 03 →</a></div></nav><div class="page-mast reveal"><div class="eyebrow">Board 02 · mockup, synthetic data</div></div><section class="board reveal">
+<div class="board-main">
+  <div class="plate"><div class="plate-no">02</div><div class="plate-body">
+    <h2>Integration health — central view</h2>
+    <div class="plate-specs"><span>Audience <i>Central DQI</i></span><span>Grain <i>Unit × integration</i></span>
+    <span>Refresh <i>Hourly</i></span><span>Window <i>Rolling 7 days</i></span></div></div></div>
+
+  <div class="panel">
+    <div class="panel-h">Alarms</div>
+    <div class="tiles">
+      <div class="tile is-alarm"><div class="tile-k">Create : update canary</div><div class="tile-v">+297%</div><div class="tile-s">INT-004 · 12 Aug</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Stale — no run, no log</div><div class="tile-v">23d</div><div class="tile-s">INT-007</div></div>
+      <div class="tile is-warn"><div class="tile-k">Zero-row success</div><div class="tile-v">1</div><div class="tile-s">INT-009 · 01 Jul</div></div>
+      <div class="tile is-warn"><div class="tile-k">Rows per unique person</div><div class="tile-v">1.58</div><div class="tile-s">INT-004 · base 1.12</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Human-account bulk write</div><div class="tile-v">1</div><div class="tile-s">10 Aug · 1,847 rows</div></div>
+    </div>
+
+    <div class="method">
+      <div class="method-h">The canary — create : update ratio against trailing average</div>
+      <div class="logic">PER RUN &nbsp;Contacts_Created ÷ Contacts_Updated &nbsp;vs&nbsp; trailing 6-run mean &nbsp;·&nbsp; alert &gt; 100% variance</div>
+      <p><b>INT-004, 12 Aug: ratio 1.23 against a trailing average of 0.31 — a 297% deviation.</b> 214 Contacts created
+      where roughly 55 were expected. When a matching key stops resolving, the pipeline stops recognising existing
+      constituents and starts creating them instead. Creates spike, updates collapse, and the ratio moves long before
+      anyone notices the duplicates.</p>
+      <div class="catch"><em>Why this is invisible to every other check — the single most important note on this page</em>
+      <p><b>Nothing failed.</b> The run completed. Status is success. The error count is zero, and it is zero
+      <i>correctly</i> — no row was rejected because no row was invalid. Row counts look normal. Volume is unremarkable.
+      The pipeline did precisely what it was configured to do, against a broken key, and every conventional monitor
+      reports green. A dashboard built on run status and error counts alone would have shown this run as one of the
+      healthiest of the week.</p>
+      <p>The damage is roughly 160 duplicate constituents, found months later by a gift officer holding two records for
+      the same donor, or never found at all. <b>There is no error to detect, because no error occurred.</b> The only
+      available signal is the shape of the output compared against the integration's own history — which is why created
+      and updated are stored as separate counters per run rather than rolled into a single "records processed" figure.
+      Roll them up and this alarm becomes unbuildable.</p></div>
+    </div>
+
+    <div class="method">
+      <div class="method-h">Staleness — deriving an alert from the absence of data</div>
+      <div class="logic">SCHEDULED &nbsp;days since last success &gt; cadence + grace &nbsp;·&nbsp; BURSTY &nbsp;TODAY() &gt; Expected_Next_Run__c &nbsp;OR&nbsp; blank</div>
+      <p>INT-007 last succeeded on 22 July. It failed 31 times on a field-level security error, then stopped.
+      Twenty-three days of Registrar email engagement data are missing.</p>
+      <div class="catch"><em>Why nothing alerted</em>
+      <p><b>A stopped integration writes no rows and no errors.</b> Absence generates nothing to alert on — it is
+      invisible by construction, and no amount of monitoring the log will surface it, because there is no log entry to
+      monitor. It can only be derived from an expectation, which is why expected cadence is a required field.
+      <b>BR-3 is what makes this usable:</b> four of nine integrations run in bursts, and cadence-based logic would show
+      44% of the register permanently red — which teaches people that red means nothing and destroys the panel. The
+      expected-next-run date, set as the closing step of each run, is the only thing separating a genuine alarm from a
+      wall of noise.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">By unit <span>three buckets on every row · shared integrations appear under both owners</span></div>
+    <div class="units">
+      <div class="unit">
+        <div><div class="unit-name">Events</div><div class="unit-sub">2 integrations · 1 shared · 0 attested</div></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Integration</th><th>Cadence</th><th>Last run</th><th class="num">Rows</th><th class="num">Created</th><th class="num">Updated</th><th class="num bk">Rejected</th><th class="num bk">Warned</th><th class="num bk">Clean</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr class="row-alarm"><td>Greater Giving <span class="tag t-shared">shared</span></td><td>ad hoc</td><td class="num">12 Aug</td><td class="num">612</td><td class="num">214</td><td class="num">174</td><td class="num bk-rej">19</td><td class="num bk-warn">41</td><td class="num bk-clean">552</td><td><span class="dot d-alarm"></span>canary</td></tr>
+            <tr><td>Mailchimp — Events</td><td>daily</td><td class="num">14 Aug</td><td class="num">14,708</td><td class="num">0</td><td class="num">13,092</td><td class="num bk-rej">28</td><td class="num bk-warn">63</td><td class="num bk-clean">14,617</td><td><span class="dot d-ok"></span>ok</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="unit quiet">
+        <div><div class="unit-name">Registrar Office</div><div class="unit-sub">2 integrations · 0 shared · 1 attested</div></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Integration</th><th>Cadence</th><th>Last run</th><th class="num">Rows</th><th class="num">Created</th><th class="num">Updated</th><th class="num bk">Rejected</th><th class="num bk">Warned</th><th class="num bk">Clean</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr class="row-alarm"><td>Mailchimp — Registrar</td><td>daily</td><td class="num">22 Jul</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num bk-rej">—</td><td class="num bk-warn">—</td><td class="num bk-clean">—</td><td><span class="dot d-alarm"></span>stale 23d</td></tr>
+            <tr class="row-inert"><td>Student Information System</td><td>semiannual</td><td class="num">26 May</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="dot d-inert"></span>next 18 Dec</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="unit">
+        <div><div class="unit-name">Development</div><div class="unit-sub">4 integrations · 2 shared · 2 attested</div></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Integration</th><th>Cadence</th><th>Last run</th><th class="num">Rows</th><th class="num">Created</th><th class="num">Updated</th><th class="num bk">Rejected</th><th class="num bk">Warned</th><th class="num bk">Clean</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr class="row-warn"><td>Greater Giving <span class="tag t-shared">shared</span></td><td>ad hoc</td><td class="num">09 Aug</td><td class="num">288</td><td class="num">12</td><td class="num">229</td><td class="num bk-rej">3</td><td class="num bk-warn">8</td><td class="num bk-clean">277</td><td><span class="dot d-warn"></span>see Events</td></tr>
+            <tr><td>Gratavid <span class="tag t-shared">shared</span></td><td>daily</td><td class="num">13 Aug</td><td class="num">3,612</td><td class="num">0</td><td class="num">3,612</td><td class="num bk-rej">0</td><td class="num bk-warn">0</td><td class="num bk-clean">3,612</td><td><span class="dot d-ok"></span>ok</td></tr>
+            <tr class="row-inert"><td>Gravyty — Giving Day</td><td>ad hoc</td><td class="num">03 Mar</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="dot d-inert"></span>next 02 Mar 27</td></tr>
+            <tr class="row-warn"><td>iWave</td><td>quarterly</td><td class="num">01 Jul</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num bk-rej">0</td><td class="num bk-warn">0</td><td class="num bk-clean">0</td><td><span class="dot d-warn"></span>zero-row success</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="unit">
+        <div><div class="unit-name">Alumni Relations</div><div class="unit-sub">2 integrations · 1 shared · 1 attested</div></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Integration</th><th>Cadence</th><th>Last run</th><th class="num">Rows</th><th class="num">Created</th><th class="num">Updated</th><th class="num bk">Rejected</th><th class="num bk">Warned</th><th class="num bk">Clean</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr class="row-warn"><td>Alumni Portal</td><td>hourly</td><td class="num">14 Aug</td><td class="num">311</td><td class="num">0</td><td class="num">268</td><td class="num bk-rej">43</td><td class="num bk-warn">0</td><td class="num bk-clean">268</td><td><span class="dot d-warn"></span>validation rule</td></tr>
+            <tr><td>Gratavid <span class="tag t-shared">shared</span></td><td>daily</td><td class="num">14 Aug</td><td class="num">2,884</td><td class="num">0</td><td class="num">2,884</td><td class="num bk-rej">0</td><td class="num bk-warn">0</td><td class="num bk-clean">2,884</td><td><span class="dot d-ok"></span>ok</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="unit">
+        <div><div class="unit-name">Marketing &amp; Comms</div><div class="unit-sub">1 integration · 0 shared · 0 attested</div></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Integration</th><th>Cadence</th><th>Last run</th><th class="num">Rows</th><th class="num">Created</th><th class="num">Updated</th><th class="num bk">Rejected</th><th class="num bk">Warned</th><th class="num bk">Clean</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Mailchimp — Marketing &amp; Comms</td><td>daily</td><td class="num">14 Aug</td><td class="num">58,842</td><td class="num">0</td><td class="num">48,167</td><td class="num bk-rej">14</td><td class="num bk-warn">231</td><td class="num bk-clean">58,597</td><td><span class="dot d-ok"></span>ok</td></tr>
+          </tbody></table></div>
+      </div>
+    </div>
+
+    <div class="method">
+      <div class="method-h">Three buckets — why "success rate" is not a column here</div>
+      <div class="logic">rejected + warned + clean + unchanged + skipped &nbsp;=&nbsp; rows in file &nbsp;·&nbsp; no residual, every run</div>
+      <p><b>Rejected</b> did not load. <b>Loaded with warning</b> loaded but carries a known S1 governance defect — no
+      constituency, no preferred email, no GAU allocation, a blank household greeting. <b>Loaded clean</b> passed every
+      rule. The warning bucket is populated by evaluating the S1 rule set at load time, not overnight, so the defect is
+      written with <span class="mono">Introduced_By_Run__c</span> already populated.</p>
+      <div class="catch"><em>What two buckets would hide</em>
+      <p>Collapse warned into clean and the Greater Giving run on 12 Aug reports <b>96.9% success</b> — a good week.
+      Forty-one records loaded carrying defects that will appear on board 06 as a worklist, and nothing connects them
+      back to this run. The pipeline dashboards would report health improving while the defect backlog grew, and the two
+      halves of the programme would contradict each other in front of the people being asked to fund it.
+      <b>The warning bucket is the join.</b> It is also the only reason defect attribution works at all: a defect found
+      in November can be traced to the May run that introduced it, because the link was written at load time rather than
+      inferred later.</p></div>
+    </div>
+  </div>
+</div>
+<aside class="gutter">
+  <div class="gutter-h">Board 02</div>
+  <div class="pin"><div class="pin-no done">BR-4</div><p><b>Three buckets on every row.</b> Watch what happens to the numbers read this way — Mailchimp MarComm's 231 warnings had been invisible inside a 99.6% success figure.</p></div>
+  <div class="pin"><div class="pin-no done">BR-3</div><p><b>Gravyty and SIS show as dormant, not stale.</b> Both carry a future expected-next-run date, as do iWave and Greater Giving. Without this, four of nine rows are permanently red.</p></div>
+  <div class="pin"><div class="pin-no">D14</div><p><b>Greater Giving appears under both units.</b> Rows are attributed to the unit whose event produced them, not to the primary owner — otherwise Events carries every Development gala record. Sponsorship ownership is still unresolved.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>The Alumni Portal's rejection rate is not a bad pipeline.</b> Its source is thousands of untrained people. It needs its own threshold and a staged-review tier, not the same bar as an API connector.</p></div>
+</aside>
+</section>
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>

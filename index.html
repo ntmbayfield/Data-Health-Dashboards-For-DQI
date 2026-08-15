@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data health dashboards — review mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<header class="mast reveal">
+  <div class="eyebrow">Design review v2 — mockups, not a build</div>
+  <h1>Data health dashboards</h1>
+  <div class="mast-meta">
+    <div><b>Prepared for</b>Five unit leads + central DQI</div>
+    <div><b>Register</b>v2 — 9 integrations, 2 shared</div>
+    <div><b>Scope</b>Proof of concept, 5 units</div>
+    <div><b>Data shown</b>Synthetic</div>
+  </div>
+  <div class="flow">
+    <span class="sh">Gratavid <em>◇</em></span><span>Alumni Portal</span><span>Mailchimp ×3</span>
+    <span class="sh">Greater Giving <em>◇</em></span><span>SIS</span><span>Gravyty</span><span>iWave</span>
+    <em>→</em><span><em>Omatic Cloud</em></span><em>→</em><span><em>Salesforce</em></span>
+    <span style="border:0;background:none;color:var(--ink-3);font-size:11.5px">◇ one vendor account, two business owners</span>
+  </div>
+  <div class="synth">
+    <b>Every number on this page is invented.</b> No real institution<b>Every number on this page is invented.</b>#39;s data appears anywhere in this deck, and all staff names have been replaced with role labels. The inventory, ownership and cadences are real as stated; run counts,
+    error volumes, defect totals and scores are plausible fabrications built to make design decisions visible. Do not
+    quote a figure from this document.
+  </div>
+  <div class="synth">
+    <b>Every number on this page is invented.</b> No real institution<b>Every number on this page is invented.</b>#39;s data appears anywhere in this deck, and all staff names have been replaced with role labels. The inventory, ownership and cadences are real as stated; run counts,
+    error volumes, defect totals and scores are plausible fabrications built to make design decisions visible. Do not
+    quote a figure from this document.
+  </div>
+  <div class="scope">
+    <div class="scope-h">What this is, and what it scales to</div>
+    <div class="scope-b">
+      <p>A mockup of an idea for how to construct data quality and integration health dashboards. It was prototyped
+      against a <b>proof of concept with five decentralised units creating and entering data:</b></p>
+      <div class="scope-units">
+        <span>Alumni Relations</span><span>Development</span><span>Events</span>
+        <span>Marketing &amp; Communications</span><span>Registrar Office</span>
+      </div>
+      <p>Five units is small enough to name every integration on one page and interview every owner in a fortnight,
+      which is why it is the right size to prove the model on. <b>The same functionality scales without redesign to an
+      institution with thirty units.</b> Nothing here is hard-coded to five: the register, the run log, the exception
+      log and the defect log are all keyed on unit and integration, so a thirty-unit deployment adds rows, not
+      structure. Boards 01, 04 and 05 grow by filtering and sorting rather than by adding panels. Board 02 is the one
+      that changes shape — thirty unit panels do not fit on a screen, so it becomes a ranked exception view showing only
+      units with an open alarm. Board 06 is already one instance per unit and simply gets instantiated thirty times.</p>
+      <p>Two things get harder at thirty, and both are governance rather than engineering: the number of writers on any
+      shared field grows, so the single-writer decision becomes mandatory rather than advisable; and the interview
+      inventory that takes two weeks here takes a quarter, which argues for a self-service registration form rather than
+      a spreadsheet.</p>
+    </div>
+  </div>
+
+  <p class="lede">
+    <strong>Nine data integrations</strong> across five units and seven source systems. <strong>Two carry a primary and
+    a secondary business owner</strong> — Gratavid and Greater Giving are single vendor accounts serving two units each,
+    which is what takes the register from eleven rows to nine and <strong>Contact-create paths from four to three.</strong>
+    <strong>Six boards, one data model:</strong> everything except the defect backlog is a different lens on the same run
+    log, so a unit view, a seven-day log and a semiannual audit are filters rather than separate builds.
+    The <strong>purple notes throughout explain how each alert is derived</strong> — the logic behind it, what it catches,
+    and what would go undetected without it. Read those before challenging a number.
+  </p>
+</header>
+
+<section class="reveal" style="margin-top:52px">
+  <div class="panel-h" style="margin-bottom:0">The boards <span>each opens on its own page &middot; six dashboards, the reference key, and the source workbook</span></div>
+  <div class="cards">
+      <a class="card" href="board-01.html">
+        <div class="card-top"><div class="card-no">01</div>
+          <div class="card-hd"><span class="card-t">Integration register &amp; mapping attestation</span><div class="card-meta">Central governance · one integration per row · read quarterly</div></div></div>
+        <div class="card-b"><p>The inventory itself, and the two dates that reveal whether a mapping running in production was ever actually reviewed. Also the field write matrix — <b>five pipelines write the same email opt-out field</b>, and nothing at runtime detects it because every write succeeds.</p></div>
+        <div class="card-f"><span class="card-codes">F2 · D2 · D12 · D13</span><span class="card-go">Open board</span></div>
+      </a>
+      <a class="card" href="board-02.html">
+        <div class="card-top"><div class="card-no">02</div>
+          <div class="card-hd"><span class="card-t">Integration health — central view</span><div class="card-meta">Central DQI · unit × integration · rolling 7 days</div></div></div>
+        <div class="card-b"><p>Where the alarms live. The <b>create:update canary</b> catches matching logic failing on a run that reported success with zero errors; staleness derives an alert from the absence of data. Three buckets on every row.</p></div>
+        <div class="card-f"><span class="card-codes">BR-4 · BR-3 · D14</span><span class="card-go">Open board</span></div>
+      </a>
+      <a class="card" href="board-03.html">
+        <div class="card-top"><div class="card-no">03</div>
+          <div class="card-hd"><span class="card-t">Graduate import audit</span><div class="card-meta">Semiannual · SIS → Omatic → Salesforce · next 18 Dec</div></div></div>
+        <div class="card-b"><p>Runs twice a year, so nobody remembers how it works. The question it answers is not whether the import succeeded but <b>who graduated and did not arrive</b> — 228 of 4,187, found only by reconciling against the registrar's own count.</p></div>
+        <div class="card-f"><span class="card-codes">D3 · BR-5 · BR-11</span><span class="card-go">Open board</span></div>
+      </a>
+      <a class="card" href="board-04.html">
+        <div class="card-top"><div class="card-no">04</div>
+          <div class="card-hd"><span class="card-t">Seven-day processing log</span><div class="card-meta">Daily standup · one run per row · refresh 15 min</div></div></div>
+        <div class="card-b"><p>Every run, every trigger, every error. Includes the <b>1,847-row manual upload with no run record</b> — visible only because dedicated integration users make a human bulk write detectable by contrast.</p></div>
+        <div class="card-f"><span class="card-codes">BR-2 · BR-1</span><span class="card-go">Open board</span></div>
+      </a>
+      <a class="card" href="board-05.html">
+        <div class="card-top"><div class="card-no">05</div>
+          <div class="card-hd"><span class="card-t">Data health defect backlog</span><div class="card-meta">State of Salesforce · nightly · SF report library</div></div></div>
+        <div class="card-b"><p>Measures the database rather than the pipeline. Two numbers doing two jobs: backlog is the remediation workload, <b>new defects in 30 days is the governance metric</b> — and 2,168 of them trace to one run.</p></div>
+        <div class="card-f"><span class="card-codes">D2 · D10</span><span class="card-go">Open board</span></div>
+      </a>
+      <a class="card" href="board-06.html">
+        <div class="card-top"><div class="card-no">06</div>
+          <div class="card-hd"><span class="card-t">Unit dashboard — one per unit</span><div class="card-meta">Unit lead + staff · one unit · shown for Events</div></div></div>
+        <div class="card-b"><p>Data quality score with its four components, the unit's own integrations including shared ones, seven live alerts that each open a worklist, and a 30-day run log — <b>30 days, because the canary needs history to be a canary.</b></p></div>
+        <div class="card-f"><span class="card-codes">D9 · D14</span><span class="card-go">Open board</span></div>
+      </a>
+      <a class="card" href="register.html">
+        <div class="card-top"><div class="card-no reg-no">XLS</div>
+          <div class="card-hd"><span class="card-t">Integration register — the workbook</span>
+          <div class="card-meta">Weeks 1&ndash;2 inventory &middot; 10 tabs &middot; viewable and downloadable</div></div></div>
+        <div class="card-b"><p>The working inventory every board is built from, and the thing you build first &mdash;
+        by interviewing the five units, before any dashboard is designed. <b>Roughly 80% of the value of this project
+        and no engineering at all:</b> all eight risk findings were produced from the inventory alone, before a single
+        record was examined. Twelve build requirements, fifteen implementation decisions, and the detection logic
+        behind every alert on the boards.</p></div>
+        <div class="card-f"><span class="card-codes">9 integrations &middot; 5 units &middot; 7 sources</span><span class="card-go">Open workbook</span></div>
+      </a>
+      <a class="card" href="appendix.html">
+        <div class="card-top"><div class="card-no appx-no">KEY</div>
+          <div class="card-hd"><span class="card-t">Appendix — margin reference key</span>
+          <div class="card-meta">Full content · every code used in the board margins</div></div></div>
+        <div class="card-b"><p>Each board carries a numbered margin. Every marker points to a build requirement, an
+        implementation decision, or a finding from the inventory. This is the complete key: which codes appear on which
+        board, all twelve build requirements, fifteen implementation decisions, eight findings, and <b>what the em dash
+        means</b> — a design note with nothing to sign, which is usually how a board stops being believed when
+        ignored.</p></div>
+        <div class="card-f"><span class="card-codes">BR · D · F · —</span><span class="card-go">Open appendix</span></div>
+      </a>
+  </div>
+</section>
+
+<section class="reveal" style="margin-top:56px">
+<div class="locked">
+    <div class="locked-h">Build requirements — the full set behind these six boards, all proposed</div>
+    <div class="locked-g">
+      <div class="br"><code>BR-1 · proposed</code><h4>Provenance on every record, day one</h4>
+        <p><span class="mono">Source_System__c</span>, <span class="mono">Created_By_Run__c</span>,
+        <span class="mono">Last_Integration_Update__c</span> and a unique <span class="mono">Source_Record_Id__c</span>
+        on Contact, Account and Opportunity, plus a dedicated integration user per pipeline. Cannot be applied
+        retroactively — every week of delay is another week of unattributable records.</p></div>
+      <div class="br"><code>BR-2 · proposed</code><h4>Mandatory intake for manual uploads</h4>
+        <p>Manual files route through an Omatic file-import profile so logging is structural. Screen Flow is the
+        exception path. Acceptance: zero Contacts created by a human account in a 30-day window with no run record.</p></div>
+      <div class="br"><code>BR-3 · proposed</code><h4>Expected next run set at close of run</h4>
+        <p>Enforced by validation rule on the four bursty integrations — Greater Giving, SIS, Gravyty, iWave. The run
+        cannot be marked complete until the date is set. Close of run is the only moment anyone knows the answer.</p></div>
+      <div class="br"><code>BR-4 · proposed</code><h4>Three buckets, not two</h4>
+        <p>Rejected · loaded with warning · loaded clean, on every run and every board. The warning bucket is the join
+        between the pipeline dashboards and the data health dashboard.</p></div>
+      <div class="br"><code>BR-5 · proposed</code><h4>Student ID crosswalk on the graduate import</h4>
+        <p>Store the SIS student ID on Contact as a <b>unique External ID</b> at first load, and configure Omatic to key
+        on it before any name or date-of-birth fallback. Every subsequent cycle then becomes an upsert instead of a fresh
+        fuzzy match. Currently zero of 3,959 loaded graduates carry one. <b>Blocking for the December cycle</b> —
+        retrofitting after another name-and-DOB load costs more than building it now, and the duplicates it prevents are
+        the expensive kind.</p></div>
+      <div class="br"><code>BR-6 · proposed</code><h4>Attestation as a record, not a checkbox</h4>
+        <p>Two independent dates on every integration — <span class="mono">Mapping_Last_Modified__c</span> from Omatic
+        and <span class="mono">Mapping_Last_Attested__c</span> from a human — plus the version reviewed, the reviewer,
+        the method used, and any accepted exceptions. A checkbox gets clicked reflexively; a form asking which version
+        and which method does not.</p></div>
+      <div class="br"><code>BR-7 · proposed</code><h4>Source and target schema fingerprinting</h4>
+        <p>Capture the field list the source returns on every run and diff it against last known good. Do the same on
+        the Salesforce side — API name, type, required flag, and active picklist values for every mapped field. Source
+        drift catches a vendor adding a field; target drift catches a unit admin changing a validation rule or picklist,
+        which is the more common outage in a Salesforce org.</p></div>
+      <div class="br"><code>BR-8 · proposed</code><h4>Rolling canary baseline per integration</h4>
+        <p>Store created and updated as separate counters on every run and maintain a trailing six-run mean of the
+        create:update ratio per integration. Roll the two into a single "records processed" figure and the canary alarm
+        becomes unbuildable — there is nothing left to compare.</p></div>
+      <div class="br"><code>BR-9 · proposed</code><h4>Error category normalisation table</h4>
+        <p>A maintained pattern-to-category map turning raw vendor and Salesforce error strings into a controlled set:
+        validation rule, required field null, invalid picklist, duplicate rule, field-level security, lookup missing,
+        matching ambiguity, API limit, unclassified. Track the unclassified rate — it is the maintenance signal for the
+        table itself.</p></div>
+      <div class="br"><code>BR-10 · proposed</code><h4>Acknowledged-exception suppression</h4>
+        <p>Every defect rule needs a reviewed-and-accepted state carrying a reviewer, a reason and a re-review date.
+        Without it the same few hundred unfixable records appear on every monthly report, staff learn the list contains
+        known noise, and the board is dead within two quarters. Costs almost nothing now; close to unrecoverable once
+        trust has gone.</p></div>
+      <div class="br"><code>BR-11 · proposed</code><h4>Segmented pre-load gate on the graduate import</h4>
+        <p>Block the load when <i>any</i> school, degree level or term segment varies from the registrar's own count by
+        more than the tolerance — not when the file total does. Spring 2026's aggregate variance was −2.0%, comfortably
+        inside any file-level threshold, while Education was 23.7% short. Also required: a tier-C hold queue with a named
+        owner, since possible matches must neither auto-create nor auto-merge.</p></div>
+      <div class="br"><code>BR-12 · proposed</code><h4>Dual-owner countersign on shared integrations</h4>
+        <p>Gratavid and Greater Giving each serve two units from one vendor account. The primary owner holds the mapping;
+        the secondary countersigns any change, and both see the integration on their unit board. Rows and defects
+        attribute to the unit whose event or campaign produced them, not to the primary owner.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>

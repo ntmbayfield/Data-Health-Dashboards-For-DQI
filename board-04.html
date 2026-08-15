@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board 04 — Seven-day processing log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<nav class="nav"><a class="home" href="index.html">All dashboards</a><div class="pager"><a href="board-03.html">← Board 03</a><a href="board-05.html">Board 05 →</a></div></nav><div class="page-mast reveal"><div class="eyebrow">Board 04 · mockup, synthetic data</div></div><section class="board reveal">
+<div class="board-main">
+  <div class="plate"><div class="plate-no">04</div><div class="plate-body">
+    <h2>Seven-day processing log</h2>
+    <div class="plate-specs"><span>Audience <i>Daily standup</i></span><span>Grain <i>One run</i></span>
+    <span>Window <i>08–14 Aug 2026</i></span><span>Refresh <i>15 min</i></span></div></div></div>
+
+  <div class="panel">
+    <div class="tiles">
+      <div class="tile"><div class="tile-k">Runs</div><div class="tile-v">47</div><div class="tile-s">8 integrations</div></div>
+      <div class="tile"><div class="tile-k">Rows processed</div><div class="tile-v">81,447</div></div>
+      <div class="tile"><div class="tile-k">Unique persons</div><div class="tile-v">38,417</div><div class="tile-s">1.19 rows each</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Rejected</div><div class="tile-v">348</div><div class="tile-s">0.43%</div></div>
+      <div class="tile is-warn"><div class="tile-k">Loaded with warning</div><div class="tile-v">542</div><div class="tile-s">0.67%</div></div>
+      <div class="tile is-ok"><div class="tile-k">Loaded clean</div><div class="tile-v">80,557</div><div class="tile-s">98.90%</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Run log <span>showing 13 of 47 · newest first</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Timestamp</th><th>Integration</th><th>Unit</th><th>Triggered by</th><th>Source file</th>
+      <th class="num">Rows</th><th class="num">Unique</th><th class="num">Created</th><th class="num">Updated</th>
+      <th class="num bk">Rej</th><th class="num bk">Warn</th><th class="num bk">Clean</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="num">14 Aug 06:02</td><td>Mailchimp — MarComm</td><td>MarComm</td><td class="id">svc_mailchimp_mc</td><td class="id">api</td><td class="num">8,412</td><td class="num">6,914</td><td class="num">0</td><td class="num">6,881</td><td class="num bk-rej">2</td><td class="num bk-warn">33</td><td class="num bk-clean">8,377</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr><td class="num">14 Aug 05:48</td><td>Mailchimp — Events</td><td>Events</td><td class="id">svc_mailchimp_ev</td><td class="id">api</td><td class="num">2,106</td><td class="num">1,884</td><td class="num">0</td><td class="num">1,871</td><td class="num bk-rej">4</td><td class="num bk-warn">9</td><td class="num bk-clean">2,093</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr><td class="num">14 Aug 05:31</td><td>Gratavid <span class="tag t-shared">shared</span></td><td>Alumni Rel.</td><td class="id">svc_gratavid</td><td class="id">api</td><td class="num">412</td><td class="num">412</td><td class="num">0</td><td class="num">412</td><td class="num bk-rej">0</td><td class="num bk-warn">0</td><td class="num bk-clean">412</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr class="row-warn"><td class="num">14 Aug 04:15</td><td>Alumni Portal</td><td>Alumni Rel.</td><td class="id">svc_portal</td><td class="id">api</td><td class="num">38</td><td class="num">38</td><td class="num">0</td><td class="num">31</td><td class="num bk-rej">7</td><td class="num bk-warn">0</td><td class="num bk-clean">31</td><td><span class="dot d-warn"></span>partial</td></tr>
+        <tr><td class="num">13 Aug 06:02</td><td>Mailchimp — MarComm</td><td>MarComm</td><td class="id">svc_mailchimp_mc</td><td class="id">api</td><td class="num">8,390</td><td class="num">6,902</td><td class="num">0</td><td class="num">6,874</td><td class="num bk-rej">1</td><td class="num bk-warn">29</td><td class="num bk-clean">8,360</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr><td class="num">13 Aug 05:29</td><td>Gratavid <span class="tag t-shared">shared</span></td><td>Development</td><td class="id">svc_gratavid</td><td class="id">api</td><td class="num">3,612</td><td class="num">3,612</td><td class="num">0</td><td class="num">3,612</td><td class="num bk-rej">0</td><td class="num bk-warn">0</td><td class="num bk-clean">3,612</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr class="row-alarm"><td class="num">12 Aug 21:14</td><td>Greater Giving <span class="tag t-shared">shared</span></td><td>Events</td><td class="id">svc_greatergiving</td><td class="id">api</td><td class="num">612</td><td class="num">388</td><td class="num">214</td><td class="num">174</td><td class="num bk-rej">19</td><td class="num bk-warn">41</td><td class="num bk-clean">552</td><td><span class="dot d-alarm"></span>canary +297%</td></tr>
+        <tr><td class="num">12 Aug 06:02</td><td>Mailchimp — MarComm</td><td>MarComm</td><td class="id">svc_mailchimp_mc</td><td class="id">api</td><td class="num">8,377</td><td class="num">6,899</td><td class="num">0</td><td class="num">6,862</td><td class="num bk-rej">3</td><td class="num bk-warn">34</td><td class="num bk-clean">8,340</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr class="row-warn"><td class="num">11 Aug 14:22</td><td>Alumni Portal</td><td>Alumni Rel.</td><td class="id">svc_portal</td><td class="id">api</td><td class="num">51</td><td class="num">51</td><td class="num">0</td><td class="num">44</td><td class="num bk-rej">7</td><td class="num bk-warn">0</td><td class="num bk-clean">44</td><td><span class="dot d-warn"></span>partial</td></tr>
+        <tr class="row-alarm"><td class="num">10 Aug 09:11</td><td><b>— no integration —</b></td><td>Events</td><td class="id">staff account (human)</td><td class="id">reunion_list_FINAL_v3.csv</td><td class="num">1,847</td><td class="num">1,612</td><td class="num">1,203</td><td class="num">409</td><td class="num bk-rej">235</td><td class="num">—</td><td class="num">—</td><td><span class="dot d-alarm"></span>unlogged</td></tr>
+        <tr><td class="num">09 Aug 19:05</td><td>Greater Giving <span class="tag t-shared">shared</span></td><td>Development</td><td class="id">svc_greatergiving</td><td class="id">api</td><td class="num">288</td><td class="num">241</td><td class="num">12</td><td class="num">229</td><td class="num bk-rej">3</td><td class="num bk-warn">8</td><td class="num bk-clean">277</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr><td class="num">08 Aug 06:02</td><td>Mailchimp — MarComm</td><td>MarComm</td><td class="id">svc_mailchimp_mc</td><td class="id">api</td><td class="num">8,401</td><td class="num">6,908</td><td class="num">0</td><td class="num">6,879</td><td class="num bk-rej">2</td><td class="num bk-warn">31</td><td class="num bk-clean">8,368</td><td><span class="dot d-ok"></span>success</td></tr>
+        <tr class="row-alarm"><td class="num">—</td><td>Mailchimp — Registrar</td><td>Registrar</td><td class="id">svc_mailchimp_ro</td><td class="id">api</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="dot d-alarm"></span>no run · 23d</td></tr>
+      </tbody></table></div>
+
+    <div class="method">
+      <div class="method-h">The 10 Aug row — how an unlogged load became visible</div>
+      <div class="logic">FLAG &nbsp;created by a non-integration User &nbsp;AND&nbsp; no Integration_Run__c &nbsp;AND&nbsp; count &gt; threshold/hour</div>
+      <p>1,847 rows, 1,203 Contacts created, 235 rejected. No mapping, no owner, no matching configuration, no run
+      record. It is the largest Contact-create event of the week and it did not come from an integration.</p>
+      <div class="catch"><em>This row exists only because of BR-1</em>
+      <p>Before dedicated integration users, a Data Loader session was <b>completely indistinguishable from any other
+      write.</b> No log, no run record, no mapping, no error report — the records simply appeared, and the only trace was
+      a <span class="mono">CreatedById</span> nobody was looking at. Giving every pipeline its own user makes a human
+      bulk write detectable <i>by contrast</i>: records created by a person, at volume, with no run attached, are now a
+      queryable set. <b>Detection is not prevention.</b> BR-2 is what stops it, and BR-2 is a policy change — routing
+      manual files through an Omatic file-import profile makes the logging structural rather than dependent on anyone's
+      discipline.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Errors, aggregated <span>340 raw messages, six actual problems</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Category</th><th>Normalised message</th><th class="num">Count</th><th class="num">Int.</th><th>First</th><th>Last</th><th>Root cause</th></tr></thead>
+      <tbody>
+        <tr class="row-alarm"><td class="mono">field_level_security</td><td>Integration user lacks edit on <span class="mono">npe01__Preferred_Email__c</span></td><td class="num">31</td><td class="num">1</td><td class="num">22 Jul</td><td class="num">22 Jul</td><td>profile change — then the integration stopped</td></tr>
+        <tr class="row-alarm"><td class="mono">picklist_value_invalid</td><td>Sponsorship Level "Platinum Plus" not in active values</td><td class="num">19</td><td class="num">1</td><td class="num">12 Aug</td><td class="num">12 Aug</td><td>source added a tier; translation table not updated</td></tr>
+        <tr class="row-warn"><td class="mono">validation_rule_violation</td><td>Employer required when Job Title populated</td><td class="num">19</td><td class="num">1</td><td class="num">11 Aug</td><td class="num">14 Aug</td><td>unit added a rule the portal cannot satisfy</td></tr>
+        <tr class="row-warn"><td class="mono">duplicate_rule_blocked</td><td>Contact matches an existing record, insert blocked</td><td class="num">8</td><td class="num">1</td><td class="num">09 Aug</td><td class="num">12 Aug</td><td>working as designed — these are saves, not failures</td></tr>
+        <tr><td class="mono">required_field_null</td><td>Constituency required on Contact insert</td><td class="num">4</td><td class="num">1</td><td class="num">13 Aug</td><td class="num">14 Aug</td><td>mapping gap</td></tr>
+        <tr><td class="mono">unclassified</td><td>—</td><td class="num">3</td><td class="num">2</td><td class="num">08 Aug</td><td class="num">13 Aug</td><td>0.9% — the health metric for this table itself</td></tr>
+      </tbody></table></div>
+    <div class="method">
+      <div class="method-h">Why raw messages are normalised before they are counted</div>
+      <p>340 distinct error strings resolve to six problems. Without a pattern-to-category mapping table the panel shows
+      hundreds of one-off rows and nobody can tell which is systemic. <b>The <span class="mono">unclassified</span> rate
+      is the maintenance signal for the mapping table itself</b> — when it climbs, the categories have fallen behind the
+      errors.</p>
+      <div class="catch"><em>The top row explains board 02</em>
+      <p>INT-007 errored 31 times on 22 July, then stopped, and generated nothing further — no rows, no errors, no
+      signal at all. Three weeks of Registrar email engagement data are missing, and <b>the first indication was a
+      derived staleness check, not an alert.</b> A monitoring approach built only on watching for errors would still be
+      waiting.</p></div>
+    </div>
+  </div>
+</div>
+<aside class="gutter">
+  <div class="gutter-h">Board 04</div>
+  <div class="pin"><div class="pin-no done">BR-2</div><p><b>The 10 Aug load is why intake is now mandatory.</b> Detection came free with integration users; prevention is the policy change.</p></div>
+  <div class="pin"><div class="pin-no done">BR-1</div><p><b>Every row carries a run ID.</b> That is what lets board 05 attribute a defect found in November to the run that introduced it in May.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>Duplicate-rule blocks are not failures.</b> They are saves. Categorise them separately or the exception rate misrepresents the pipeline and units will learn to discount the number.</p></div>
+</aside>
+</section>
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>

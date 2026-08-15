@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board 01 — Integration register &amp; mapping attestation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<nav class="nav"><a class="home" href="index.html">All dashboards</a><div class="pager"><a href="board-02.html">Board 02 →</a></div></nav><div class="page-mast reveal"><div class="eyebrow">Board 01 · mockup, synthetic data</div></div><section class="board reveal">
+<div class="board-main">
+  <div class="plate"><div class="plate-no">01</div><div class="plate-body">
+    <h2>Integration register &amp; mapping attestation</h2>
+    <div class="plate-specs"><span>Audience <i>Central governance</i></span><span>Grain <i>One integration</i></span>
+    <span>Refresh <i>Daily</i></span><span>Read <i>Quarterly</i></span></div></div></div>
+
+  <div class="panel">
+    <div class="tiles">
+      <div class="tile"><div class="tile-k">Integrations</div><div class="tile-v">9</div><div class="tile-s">was 11 instances</div></div>
+      <div class="tile is-ok"><div class="tile-k">Contact-create paths</div><div class="tile-v">3</div><div class="tile-s">was 4</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Never attested</div><div class="tile-v">5</div><div class="tile-s">56% of register</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Modified since attestation</div><div class="tile-v">3</div><div class="tile-s">unreviewed, live</div></div>
+      <div class="tile is-warn"><div class="tile-k">Schema drift open</div><div class="tile-v">2</div><div class="tile-s">1 source · 1 target</div></div>
+      <div class="tile is-warn"><div class="tile-k">Shared, dual-owner</div><div class="tile-v">2</div><div class="tile-s">both countersign</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Register <span>sorted by risk — the default view is the one people actually read</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>ID</th><th>Integration</th><th>Owning unit(s)</th><th>Source</th><th>Creates<br>Contacts</th>
+      <th>Ver</th><th>Modified</th><th>Attested</th><th>By</th><th>Drift</th><th>Tier</th><th>Flag</th></tr></thead>
+      <tbody>
+        <tr class="row-alarm"><td class="id">INT-006</td><td>Student Information System</td><td>Registrar Office</td><td>SIS</td><td class="num">Yes</td><td class="num">2.0</td><td class="num">2026-05-11</td><td class="num">2026-05-09</td><td>Registrar lead</td><td>—</td><td class="num">1</td><td><span class="tag t-alarm">unattested change</span></td></tr>
+        <tr class="row-alarm"><td class="id">INT-004</td><td>Greater Giving <span class="tag t-shared">shared</span></td><td>Events · Development</td><td>Greater Giving</td><td class="num">Yes</td><td class="num">1.8</td><td class="num">2025-11-04</td><td class="num">never</td><td>—</td><td><span class="tag t-alarm">source</span></td><td class="num">1</td><td><span class="tag t-alarm">never attested</span></td></tr>
+        <tr class="row-alarm"><td class="id">INT-007</td><td>Mailchimp — Registrar</td><td>Registrar Office</td><td>Mailchimp</td><td class="num">No</td><td class="num">3.1</td><td class="num">2025-09-18</td><td class="num">never</td><td>—</td><td><span class="tag t-alarm">target</span></td><td class="num">1</td><td><span class="tag t-alarm">stale 23d</span></td></tr>
+        <tr class="row-alarm"><td class="id">INT-003</td><td>Mailchimp — Marketing &amp; Comms</td><td>Marketing &amp; Comms</td><td>Mailchimp</td><td class="num">No</td><td class="num">3.2</td><td class="num">2026-06-02</td><td class="num">2026-01-15</td><td>MarComm lead</td><td>—</td><td class="num">1</td><td><span class="tag t-alarm">unattested change</span></td></tr>
+        <tr class="row-alarm"><td class="id">INT-008</td><td>Gravyty — Giving Day</td><td>Development</td><td>Gravyty</td><td class="num">Yes</td><td class="num">1.2</td><td class="num">2026-02-27</td><td class="num">2026-02-25</td><td>Development lead</td><td>—</td><td class="num">3</td><td><span class="tag t-alarm">unattested change</span></td></tr>
+        <tr class="row-alarm"><td class="id">INT-002</td><td>Alumni Portal</td><td>Alumni Relations</td><td>Alumni Portal</td><td class="num">No</td><td class="num">4.0</td><td class="num">2026-07-30</td><td class="num">never</td><td>—</td><td>—</td><td class="num">1</td><td><span class="tag t-alarm">never attested</span></td></tr>
+        <tr class="row-alarm"><td class="id">INT-005</td><td>Mailchimp — Events</td><td>Events</td><td>Mailchimp</td><td class="num">No</td><td class="num">3.2</td><td class="num">2026-06-02</td><td class="num">never</td><td>—</td><td>—</td><td class="num">1</td><td><span class="tag t-alarm">never attested</span></td></tr>
+        <tr class="row-warn"><td class="id">INT-009</td><td>iWave</td><td>Development</td><td>iWave</td><td class="num">No</td><td class="num">1.0</td><td class="num">2024-08-15</td><td class="num">never</td><td>—</td><td>—</td><td class="num">2</td><td><span class="tag t-warn">2 yrs untouched</span></td></tr>
+        <tr><td class="id">INT-001</td><td>Gratavid <span class="tag t-shared">shared</span></td><td>Alumni Rel. · Development</td><td>Gratavid</td><td class="num">No</td><td class="num">2.1</td><td class="num">2026-03-14</td><td class="num">2026-03-20</td><td>Alumni Rel. lead</td><td>—</td><td class="num">2</td><td><span class="tag t-ok">current</span></td></tr>
+      </tbody></table></div>
+
+    <div class="method">
+      <div class="method-h">How "unattested change" is detected</div>
+      <div class="logic">FLAG WHEN &nbsp;Mapping_Last_Modified__c &gt; Mapping_Last_Attested__c</div>
+      <p><b>Two independent dates, deliberately.</b> <span class="mono">Modified</span> comes from Omatic automatically.
+      <span class="mono">Attested</span> is entered by a human who opened the live mapping, compared it to the documented
+      spec, and recorded the version number and the review method used — visual check, sample record trace, or full
+      sandbox round-trip. A checkbox gets clicked reflexively; a form asking which version and which method does not.</p>
+      <div class="catch"><em>What one date alone would miss</em>
+      <p>Tracking only "last modified" <b>inverts the signal.</b> A mapping changed last week reads as fresh and current
+      when it is in fact unreviewed. A mapping untouched for three years reads as neglected when it may be perfectly
+      correct. The two states are indistinguishable with one date, so the check silently does nothing.
+      INT-006 is the case in point: <b>attested 9 May, modified 11 May, then used to load 4,102 graduates on 26 May.</b>
+      The mapping that ran was not the mapping that was reviewed, and every conventional report would have shown a
+      recently reviewed, recently updated, healthy integration.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Field write conflicts <span>derived from configuration — no data examined</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Salesforce field</th><th class="num">Writers</th><th>Written by</th><th>Change since v1</th><th>Single writer</th></tr></thead>
+      <tbody>
+        <tr class="row-alarm"><td class="mono">npe01__Preferred_Email__c</td><td class="num">6</td><td class="id">002, 003, 004, 006, 007, 008</td><td>−1 (GG merged)</td><td><span class="tag t-alarm">undecided</span></td></tr>
+        <tr class="row-alarm"><td class="mono">npe01__HomeEmail__c</td><td class="num">6</td><td class="id">002, 003, 004, 006, 007, 008</td><td>−1 (GG merged)</td><td><span class="tag t-alarm">undecided</span></td></tr>
+        <tr class="row-alarm"><td class="mono">HasOptedOutOfEmail</td><td class="num">5</td><td class="id">002, 003, 004, 005, 007</td><td>unchanged</td><td><span class="tag t-alarm">undecided</span></td></tr>
+        <tr class="row-warn"><td class="mono">npsp__Address__c (default)</td><td class="num">4</td><td class="id">002, 004, 006, 008</td><td>−1</td><td><span class="tag t-warn">undecided</span></td></tr>
+        <tr class="row-warn"><td class="mono">DoNotCall / SMS consent</td><td class="num">3</td><td class="id">001, 002, 004</td><td>−2 (both merged)</td><td><span class="tag t-warn">undecided</span></td></tr>
+        <tr><td class="mono">Source_System__c &nbsp;<span class="tag t-ok">BR-1</span></td><td class="num">9</td><td class="id">all</td><td>new</td><td><span class="tag t-ok">by design</span></td></tr>
+        <tr><td class="mono">Student ID (External ID)</td><td class="num">1</td><td class="id">006</td><td>—</td><td><span class="tag t-ok">INT-006</span></td></tr>
+      </tbody></table></div>
+
+    <div class="method">
+      <div class="method-h">How multi-writer conflict is detected</div>
+      <div class="logic">STATIC ANALYSIS &nbsp;COUNT(Field_Mapping__c WHERE Target_Field = X AND writes) &gt; 1</div>
+      <p>Derived from configuration on every mapping change, not from data at runtime.</p>
+      <div class="catch"><em>Why nothing at runtime catches this</em>
+      <p><b>Every write succeeds.</b> There is no error, no rejection, no warning — the last integration to run simply
+      wins. Five pipelines write the email opt-out field, so a MarComm unsubscribe can be reversed by the Events or
+      Registrar sync within hours, and the system's own logs will show two clean successful runs. It is visible only
+      from outside the org, at the moment someone who unsubscribed receives another email — which is also the moment it
+      stops being a data quality issue and becomes a compliance one. Consolidating the two shared vendor accounts removed
+      writers from four rows; the opt-out row is unchanged and remains the highest-severity finding in the register.</p></div>
+    </div>
+  </div>
+</div>
+<aside class="gutter">
+  <div class="gutter-h">Board 01</div>
+  <div class="pin"><div class="pin-no done">F2</div><p><b>Closed.</b> Gratavid and Greater Giving consolidated to one integration each. One matching config now serves both units on Greater Giving, which is what removes a create path.</p></div>
+  <div class="pin"><div class="pin-no crit">D2</div><p><b>Five writers on email opt-out.</b> Enforce the single writer through field-level security on the integration user profiles, not through Omatic config, so it survives a mapping change made under deadline pressure.</p></div>
+  <div class="pin"><div class="pin-no">D12</div><p><b>Are the three Mailchimp rows three vendor accounts?</b> If it is one account with three audiences, the register drops to 7 and the opt-out problem becomes configuration rather than governance. Consolidating Gratavid and Greater Giving but not Mailchimp is only consistent if these genuinely are separate.</p></div>
+  <div class="pin"><div class="pin-no">D13</div><p><b>Gratavid primary owner</b> is provisionally Alumni Relations. Primary holds the mapping; the secondary countersigns changes.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>Five never-attested is the honest baseline.</b> Resist backfilling dates to make the board look better — its job this quarter is to be believed.</p></div>
+</aside>
+</section>
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>

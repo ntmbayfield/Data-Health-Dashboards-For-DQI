@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board 06 — Unit dashboard — one per unit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<nav class="nav"><a class="home" href="index.html">All dashboards</a><div class="pager"><a href="board-05.html">← Board 05</a><a href="appendix.html">Appendix →</a></div></nav><div class="page-mast reveal"><div class="eyebrow">Board 06 · mockup, synthetic data</div></div><section class="board reveal">
+<div class="board-main">
+  <div class="plate"><div class="plate-no">06</div><div class="plate-body">
+    <h2>Unit dashboard — one per unit</h2>
+    <div class="plate-specs"><span>Audience <i>Unit lead + staff</i></span><span>Grain <i>One unit</i></span>
+    <span>Refresh <i>Hourly</i></span><span>Shown for <i>Events</i></span></div></div></div>
+
+  <div class="panel">
+    <div class="panel-h">All five, for context <span>each unit sees only their own board — this strip is the central view</span></div>
+    <div class="scores">
+      <div class="sc"><div class="sc-u">Alumni Relations</div>
+        <div class="sc-n"><span class="sc-v g-b">78</span><span class="sc-b g-b">B</span></div>
+        <div class="sc-c">
+          <div class="sc-r"><span>Reliability</span><span>78</span></div><div class="bar"><i class="is-ok" style="width:78%"></i></div>
+          <div class="sc-r"><span>Completeness</span><span>74</span></div><div class="bar"><i class="is-ok" style="width:74%"></i></div>
+          <div class="sc-r"><span>Introduction</span><span>88</span></div><div class="bar"><i class="is-ok" style="width:88%"></i></div>
+          <div class="sc-r"><span>Responsiveness</span><span>71</span></div><div class="bar"><i style="width:71%"></i></div>
+        </div></div>
+      <div class="sc"><div class="sc-u">Marketing &amp; Comms</div>
+        <div class="sc-n"><span class="sc-v g-b">76</span><span class="sc-b g-b">B</span></div>
+        <div class="sc-c">
+          <div class="sc-r"><span>Reliability</span><span>72</span></div><div class="bar"><i style="width:72%"></i></div>
+          <div class="sc-r"><span>Completeness</span><span>84</span></div><div class="bar"><i class="is-ok" style="width:84%"></i></div>
+          <div class="sc-r"><span>Introduction</span><span>79</span></div><div class="bar"><i class="is-ok" style="width:79%"></i></div>
+          <div class="sc-r"><span>Responsiveness</span><span>66</span></div><div class="bar"><i class="is-warn" style="width:66%"></i></div>
+        </div></div>
+      <div class="sc"><div class="sc-u">Development</div>
+        <div class="sc-n"><span class="sc-v g-c">68</span><span class="sc-b g-c">C</span></div>
+        <div class="sc-c">
+          <div class="sc-r"><span>Reliability</span><span>63</span></div><div class="bar"><i class="is-warn" style="width:63%"></i></div>
+          <div class="sc-r"><span>Completeness</span><span>71</span></div><div class="bar"><i style="width:71%"></i></div>
+          <div class="sc-r"><span>Introduction</span><span>81</span></div><div class="bar"><i class="is-ok" style="width:81%"></i></div>
+          <div class="sc-r"><span>Responsiveness</span><span>48</span></div><div class="bar"><i class="is-alarm" style="width:48%"></i></div>
+        </div></div>
+      <div class="sc" style="background:var(--warn-bg)"><div class="sc-u">Events</div>
+        <div class="sc-n"><span class="sc-v g-d">50</span><span class="sc-b g-d">D</span></div>
+        <div class="sc-c">
+          <div class="sc-r"><span>Reliability</span><span>41</span></div><div class="bar"><i class="is-alarm" style="width:41%"></i></div>
+          <div class="sc-r"><span>Completeness</span><span>68</span></div><div class="bar"><i class="is-warn" style="width:68%"></i></div>
+          <div class="sc-r"><span>Introduction</span><span>34</span></div><div class="bar"><i class="is-alarm" style="width:34%"></i></div>
+          <div class="sc-r"><span>Responsiveness</span><span>55</span></div><div class="bar"><i class="is-warn" style="width:55%"></i></div>
+        </div></div>
+      <div class="sc" style="background:var(--alarm-bg)"><div class="sc-u">Registrar Office</div>
+        <div class="sc-n"><span class="sc-v g-f">38</span><span class="sc-b g-f">F</span></div>
+        <div class="sc-c">
+          <div class="sc-r"><span>Reliability</span><span>28</span></div><div class="bar"><i class="is-alarm" style="width:28%"></i></div>
+          <div class="sc-r"><span>Completeness</span><span>61</span></div><div class="bar"><i class="is-warn" style="width:61%"></i></div>
+          <div class="sc-r"><span>Introduction</span><span>22</span></div><div class="bar"><i class="is-alarm" style="width:22%"></i></div>
+          <div class="sc-r"><span>Responsiveness</span><span>40</span></div><div class="bar"><i class="is-alarm" style="width:40%"></i></div>
+        </div></div>
+    </div>
+
+    <div class="method">
+      <div class="method-h">How the score is composed — and where it lies</div>
+      <div class="logic">30 reliability &nbsp;·&nbsp; 30 completeness &nbsp;·&nbsp; 25 introduction rate &nbsp;·&nbsp; 15 responsiveness</div>
+      <p><b>Reliability</b> — successful-run rate, staleness, and attestation currency across the unit's integrations.
+      The only component a unit controls without touching a record. <b>Completeness</b> — share of records attributed to
+      the unit with no open S1 defect. <b>Introduction rate</b> — new S1 defects per 1,000 records touched in 30 days,
+      volume-normalised so the largest unit is not automatically the worst. <b>Responsiveness</b> — open S1 defects aged
+      over 30 days as a share of the total, which separates a unit working a big inherited backlog from one ignoring a
+      small backlog.</p>
+      <div class="catch"><em>Read this before showing the letter grade to anyone senior</em>
+      <p><b>Registrar scores F and Events D, and neither has a data entry problem.</b> Both run bursty pipelines that
+      introduced thousands of defects in a single afternoon — one semiannual graduate load and one broken matching key.
+      The score is measuring that correctly. A leader reading only the letter will conclude something false about the
+      people in those units, and will be difficult to talk out of it afterwards.</p>
+      <p>Three rules follow. Always render the four components beside the composite, so the number can be interrogated in
+      the same glance it is read. Never publish a cross-unit ranking before every unit has had a worklist and one quiet
+      cycle to act on it. And accept the residual distortion: volume normalisation softens the burst penalty but does not
+      remove it, because a thousand defects created in an afternoon really are a thousand defects.
+      <b>If the score cannot be shown with its components, do not show it.</b></p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Events — your integrations <span>shared pipelines show both owners; you countersign changes</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Integration</th><th>Owner</th><th>Cadence</th><th>Next expected</th><th>Attested</th><th>Last run</th><th class="num">30d runs</th><th class="num">30d rows</th><th class="num bk">Rej</th><th class="num bk">Warn</th><th>Health</th></tr></thead>
+      <tbody>
+        <tr class="row-alarm"><td>Greater Giving <span class="tag t-shared">shared</span></td><td>You (primary)<br><span class="id">Development secondary</span></td><td>ad hoc</td><td class="num">19 Sep</td><td class="num">never</td><td class="num">12 Aug</td><td class="num">3</td><td class="num">1,204</td><td class="num bk-rej">24</td><td class="num bk-warn">58</td><td><span class="dot d-alarm"></span>at risk</td></tr>
+        <tr class="row-warn"><td>Mailchimp — Events</td><td>You (sole)</td><td>daily</td><td class="num">—</td><td class="num">never</td><td class="num">14 Aug</td><td class="num">30</td><td class="num">62,904</td><td class="num bk-rej">119</td><td class="num bk-warn">271</td><td><span class="dot d-warn"></span>unattested</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Alerts <span>7 open · newest first · each opens a worklist, not a number</span></div>
+    <div class="alerts">
+      <div class="al crit"><div class="al-sev">Critical</div><div class="al-b">
+        <h5>Matching may have failed on the 12 Aug Greater Giving run</h5>
+        <p>214 Contacts created against a trailing average of roughly 55. Create:update ratio 1.23 versus 0.31. The run
+        reported success with zero errors. Around 160 of those records are probably duplicates of constituents you
+        already had. Review before the 19 Sep event, or the same key will run again.</p>
+        <div class="src">INT-004 · canary alert · 172 records queued for review</div></div></div>
+      <div class="al crit"><div class="al-sev">Critical</div><div class="al-b">
+        <h5>Greater Giving mapping has never been attested</h5>
+        <p>Last modified 4 Nov 2025, nine months ago, and never reviewed. This is the pipeline that broke on 12 Aug. As
+        primary owner you hold the mapping; Development countersigns any change.</p>
+        <div class="src">INT-004 · attestation · due before 19 Sep</div></div></div>
+      <div class="al high"><div class="al-sev">High</div><div class="al-b">
+        <h5>19 rows rejected — "Platinum Plus" sponsorship level not in Salesforce</h5>
+        <p>Greater Giving added a sponsorship tier the picklist does not contain. Source schema drift was raised on the
+        same run. Add the value or map it to an existing tier, then re-run the 19 rejected rows.</p>
+        <div class="src">INT-004 · picklist_value_invalid · 12 Aug</div></div></div>
+      <div class="al high"><div class="al-sev">High</div><div class="al-b">
+        <h5>1,847-row manual upload on 10 Aug with no run record</h5>
+        <p>Loaded by a named account rather than an integration, creating 1,203 Contacts with no mapping and no matching
+        configuration. Under BR-2 this now routes through an Omatic file-import profile. The 1,203 records need a
+        duplicate review.</p>
+        <div class="src">staff account · reunion_list_FINAL_v3.csv · unlogged</div></div></div>
+      <div class="al med"><div class="al-sev">Medium</div><div class="al-b">
+        <h5>47 contacts opted out of email are on an active campaign</h5>
+        <p>Rule E7. Attributed to the Mailchimp Events pipeline, one of five that write the opt-out field. Until a single
+        writer is designated, this will recur regardless of remediation.</p>
+        <div class="src">INT-005 · rule E7 · 47 new in 30 days</div></div></div>
+      <div class="al med"><div class="al-sev">Medium</div><div class="al-b">
+        <h5>Mailchimp — Events mapping has never been attested</h5>
+        <p>Modified 2 Jun 2026. Attestation is a 20-minute task and it is 30 points of your reliability score.</p>
+        <div class="src">INT-005 · attestation · overdue</div></div></div>
+      <div class="al info"><div class="al-sev">Info</div><div class="al-b">
+        <h5>Greater Giving next expected run set to 19 Sep</h5>
+        <p>Under BR-3, staleness for this pipeline is measured against that date rather than a cadence. Update it at the
+        close of the September event or the alert fires on 20 Sep.</p>
+        <div class="src">INT-004 · BR-3 · set 12 Aug by Alumni Rel. lead</div></div></div>
+    </div>
+    <div class="method">
+      <div class="method-h">Why alerts, not a metric</div>
+      <p>Board 02 tells the central team where the risk is. <b>This board has to tell a unit what to do on a Monday
+      morning.</b> Every alert names the integration, the count, the deadline and the next action, and opens a worklist
+      of actual records with names on them.</p>
+      <div class="catch"><em>The failure mode this avoids</em>
+      <p>A unit handed a percentage it cannot act on disengages within two cycles — and it disengages <i>correctly</i>,
+      because a number with no worklist behind it is not information, it is judgement. That is the single most common
+      reason a governance dashboard is built, admired once, and never opened again.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">30-day run log — Events <span>showing 6 of 33 · your integrations only, including shared</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Date</th><th>Integration</th><th>Triggered by</th><th class="num">Rows</th><th class="num">Unique</th>
+      <th class="num">Created</th><th class="num">Updated</th><th class="num bk">Rej</th><th class="num bk">Warn</th><th class="num bk">Clean</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td class="num">14 Aug</td><td>Mailchimp — Events</td><td class="id">svc_mailchimp_ev</td><td class="num">2,106</td><td class="num">1,884</td><td class="num">0</td><td class="num">1,871</td><td class="num bk-rej">4</td><td class="num bk-warn">9</td><td class="num bk-clean">2,093</td><td><span class="dot d-ok"></span>ok</td></tr>
+        <tr class="row-alarm"><td class="num">12 Aug</td><td>Greater Giving</td><td class="id">svc_greatergiving</td><td class="num">612</td><td class="num">388</td><td class="num">214</td><td class="num">174</td><td class="num bk-rej">19</td><td class="num bk-warn">41</td><td class="num bk-clean">552</td><td><span class="dot d-alarm"></span>canary</td></tr>
+        <tr class="row-alarm"><td class="num">10 Aug</td><td>— no integration —</td><td class="id">staff account (human)</td><td class="num">1,847</td><td class="num">1,612</td><td class="num">1,203</td><td class="num">409</td><td class="num bk-rej">235</td><td class="num">—</td><td class="num">—</td><td><span class="dot d-alarm"></span>unlogged</td></tr>
+        <tr><td class="num">02 Aug</td><td>Greater Giving</td><td class="id">svc_greatergiving</td><td class="num">341</td><td class="num">304</td><td class="num">18</td><td class="num">281</td><td class="num bk-rej">2</td><td class="num bk-warn">9</td><td class="num bk-clean">330</td><td><span class="dot d-ok"></span>ok</td></tr>
+        <tr><td class="num">28 Jul</td><td>Mailchimp — Events</td><td class="id">svc_mailchimp_ev</td><td class="num">2,088</td><td class="num">1,871</td><td class="num">0</td><td class="num">1,862</td><td class="num bk-rej">3</td><td class="num bk-warn">11</td><td class="num bk-clean">2,074</td><td><span class="dot d-ok"></span>ok</td></tr>
+        <tr><td class="num">24 Jul</td><td>Greater Giving</td><td class="id">svc_greatergiving</td><td class="num">251</td><td class="num">228</td><td class="num">14</td><td class="num">209</td><td class="num bk-rej">3</td><td class="num bk-warn">8</td><td class="num bk-clean">240</td><td><span class="dot d-ok"></span>ok</td></tr>
+      </tbody></table></div>
+    <div class="method">
+      <div class="method-h">Reading the 12 Aug row against the two beneath it</div>
+      <p>2 Aug: 18 created, 281 updated. 24 Jul: 14 created, 209 updated. 12 Aug: <b>214 created, 174 updated.</b> The
+      break is obvious once the runs sit next to each other — which is precisely why this log is 30 days rather than 7 on
+      a unit board. <b>The canary needs history to be a canary.</b> A seven-day window on an ad-hoc integration that
+      fires three times a month may contain a single run, and a single run compared against nothing is just a number.</p>
+    </div>
+  </div>
+</div>
+<aside class="gutter">
+  <div class="gutter-h">Board 06</div>
+  <div class="pin"><div class="pin-no crit">D9</div><p><b>Does the five-unit score strip go to leadership?</b> Recommend not this quarter. Give each unit their own board and one quiet cycle first — the two lowest scores are bursty pipelines, not bad teams, and that distinction will not survive a slide.</p></div>
+  <div class="pin"><div class="pin-no">D14</div><p><b>Greater Giving appears on both Events' and Development's boards.</b> Rows attribute to the unit whose event produced them. Sponsorship ownership is still unresolved and it changes whose score carries those defects.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>Every alert opens a worklist.</b> If an alert cannot name the records behind it, it should not be an alert — it should be a metric on board 02.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>Completeness measures recent work only</b> until BR-1 has a year of history. Legacy defects predating provenance sit outside every unit's denominator. Say so on the board rather than letting someone discover it.</p></div>
+</aside>
+</section>
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>

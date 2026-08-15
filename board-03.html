@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board 03 — Graduate import audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<nav class="nav"><a class="home" href="index.html">All dashboards</a><div class="pager"><a href="board-02.html">← Board 02</a><a href="board-04.html">Board 04 →</a></div></nav><div class="page-mast reveal"><div class="eyebrow">Board 03 · mockup, synthetic data</div></div><section class="board reveal">
+<div class="board-main">
+  <div class="plate"><div class="plate-no">03</div><div class="plate-body">
+    <h2>Graduate import audit</h2>
+    <div class="plate-specs"><span>Cycle <i>Spring 2026 · loaded 26 May</i></span><span>Pipeline <i>SIS → Omatic → Salesforce</i></span>
+    <span>Frequency <i>Semiannual</i></span><span>Next <i>18 Dec 2026</i></span></div></div></div>
+
+  <div class="panel">
+    <div class="panel-h">Pre-load gate <span>blocking check, not a report read afterwards</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>School / college</th><th class="num">Registrar expects</th><th class="num">Rows in extract</th><th class="num">Variance</th><th class="num">%</th><th>Gate (±1%)</th></tr></thead>
+      <tbody>
+        <tr><td>Letters &amp; Science</td><td class="num">1,842</td><td class="num">1,832</td><td class="num">−10</td><td class="num">−0.5%</td><td><span class="tag t-ok">pass</span></td></tr>
+        <tr><td>Graduate Division</td><td class="num">964</td><td class="num">958</td><td class="num">−6</td><td class="num">−0.6%</td><td><span class="tag t-ok">pass</span></td></tr>
+        <tr><td>Engineering</td><td class="num">691</td><td class="num">688</td><td class="num">−3</td><td class="num">−0.4%</td><td><span class="tag t-ok">pass</span></td></tr>
+        <tr><td>Business</td><td class="num">412</td><td class="num">412</td><td class="num">0</td><td class="num">0.0%</td><td><span class="tag t-ok">pass</span></td></tr>
+        <tr class="row-alarm"><td>Education</td><td class="num">278</td><td class="num">212</td><td class="num">−66</td><td class="num">−23.7%</td><td><span class="tag t-alarm">blocked</span></td></tr>
+        <tr><td><b>Total</b></td><td class="num"><b>4,187</b></td><td class="num"><b>4,102</b></td><td class="num"><b>−85</b></td><td class="num"><b>−2.0%</b></td><td><span class="tag t-alarm">held</span></td></tr>
+      </tbody></table></div>
+    <div class="method">
+      <div class="method-h">Why the gate is segmented rather than a single tolerance</div>
+      <div class="logic">BLOCK IF &nbsp;ANY segment variance &gt; ±1% &nbsp;— not&nbsp; total variance &gt; ±1%</div>
+      <p>A doctoral degree code added in AY25–26 was never added to the extract filter. Education came in 23.7% short.</p>
+      <div class="catch"><em>What a whole-file tolerance would have missed</em>
+      <p><b>Aggregate variance was −2.0%,</b> comfortably inside any sensible file-level threshold. The load would have
+      passed clean and 66 doctoral graduates would have been silently absent from the alumni database — surfacing years
+      later at a reunion mailing as a complaint rather than a data finding. Small segments cannot be defended by
+      aggregate checks; the arithmetic hides them by design.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Match tiering <span>tier C never auto-creates and never auto-merges</span></div>
+    <div class="tiles">
+      <div class="tile"><div class="tile-k">A — student ID on file</div><div class="tile-v">1,204</div><div class="tile-s">auto-upsert</div></div>
+      <div class="tile"><div class="tile-k">B — high-confidence composite</div><div class="tile-v">587</div><div class="tile-s">auto, sampled QC</div></div>
+      <div class="tile is-warn"><div class="tile-k">C — possible match, held</div><div class="tile-v">143</div><div class="tile-s">human review</div></div>
+      <div class="tile"><div class="tile-k">D — no match, created</div><div class="tile-v">2,168</div><div class="tile-s">new Contact + household</div></div>
+    </div>
+    <div class="method">
+      <div class="method-h">Why 1,791 of 4,102 graduates already existed</div>
+      <p>Student donors, event attendees, children on a household account, scholarship recipients. <b>44% of every
+      incoming cohort is already in Salesforce.</b> If matching is weak, the semiannual graduate import is simultaneously
+      the largest single source of duplicate Contacts in the org — and because it runs twice a year, the duplicates
+      arrive in two large batches nobody is watching for.</p>
+      <div class="catch"><em>Tier C exists because both automatic options are wrong</em>
+      <p>Auto-creating a possible match produces hundreds of duplicates in one afternoon. Auto-merging produces a merged
+      pair that takes three weeks to unwind and may be unrecoverable. Holding is the only safe third option, and it works
+      only if someone owns the queue — the 143 held here have been open 81 days with no assignee, which is the actual
+      finding.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Post-load control totals</div>
+    <div class="scroll"><table>
+      <thead><tr><th>Measure</th><th class="num">Count</th><th class="num">Of processed</th><th>Coverage</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Contacts created</td><td class="num">2,168</td><td class="num">54.8%</td><td></td><td></td></tr>
+        <tr><td>Contacts updated</td><td class="num">1,791</td><td class="num">45.2%</td><td></td><td></td></tr>
+        <tr><td>Alumni constituency applied</td><td class="num">3,959</td><td class="num">100%</td><td><div class="bar"><i class="is-ok" style="width:100%"></i></div></td><td>must equal processed — any gap is a defect</td></tr>
+        <tr><td>Program enrollment with degree + major</td><td class="num">3,914</td><td class="num">98.9%</td><td><div class="bar"><i style="width:98.9%"></i></div></td><td>45 missing major</td></tr>
+        <tr class="row-warn"><td>Preferred email set <i>and</i> field populated</td><td class="num">3,102</td><td class="num">78.4%</td><td><div class="bar"><i class="is-warn" style="width:78.4%"></i></div></td><td>student email expiry not handled</td></tr>
+        <tr class="row-warn"><td>Default address set</td><td class="num">2,847</td><td class="num">71.9%</td><td><div class="bar"><i class="is-warn" style="width:71.9%"></i></div></td><td></td></tr>
+        <tr class="row-alarm"><td>Student ID stored as External ID</td><td class="num">0</td><td class="num">0%</td><td><div class="bar"><i class="is-alarm" style="width:1%"></i></div></td><td>crosswalk not built — 2,168 defects on board 05</td></tr>
+        <tr><td>Created with no contact information at all</td><td class="num">419</td><td class="num">10.6%</td><td></td><td>unreachable alumni — acquisition problem, not a data error</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Gap report <span>the deliverable that justifies the board</span></div>
+    <div class="tiles">
+      <div class="tile is-alarm"><div class="tile-k">Graduated, never reached Salesforce</div><div class="tile-v">228</div><div class="tile-s">5.4% of cohort</div></div>
+      <div class="tile"><div class="tile-k">Absent from the extract</div><div class="tile-v">85</div><div class="tile-s">66 Education</div></div>
+      <div class="tile"><div class="tile-k">Held at tier C, unresolved</div><div class="tile-v">143</div><div class="tile-s">81 days open</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Assigned owner</div><div class="tile-v" style="font-size:19px;padding-top:7px">unassigned</div><div class="tile-s">the actual problem</div></div>
+    </div>
+    <div class="method">
+      <div class="method-h">The question this board answers is not "did the import succeed"</div>
+      <p>It is <b>who graduated and did not arrive.</b> The import reported success. 3,959 records processed, alumni
+      constituency at 100%, no failures. Every conventional post-load report would call this a good cycle.</p>
+      <div class="catch"><em>Why the gap must be computed against an external expectation</em>
+      <p>The 85 missing graduates were never in the extract, so they appear in <b>no log, no error report and no row
+      count</b> — the pipeline cannot report on records it was never given. The only way to find them is to reconcile
+      against the registrar's own count, by segment, from a source the extract does not control. This is the same
+      structural problem as staleness on board 02: <b>absence is not an event, so it has to be derived from an
+      expectation.</b> The process also runs twice a year, so nobody remembers it — the run-book gets the same
+      attestation requirement as a mapping.</p></div>
+    </div>
+  </div>
+</div>
+<aside class="gutter">
+  <div class="gutter-h">Board 03</div>
+  <div class="pin"><div class="pin-no crit">D3</div><p><b>FERPA scope.</b> Grades, courses and application data have no advancement use case and are readable across a five-unit org. Scope to directory plus degree and graduation only, and drop directory-suppressed students before load. Counsel decides.</p></div>
+  <div class="pin"><div class="pin-no crit">BR-5</div><p><b>Build the student ID crosswalk before December.</b> A unique External ID on Contact turns every future cycle into an upsert instead of a fresh fuzzy match. Zero of 3,959 loaded graduates carry one today. Retrofitting after another name-and-DOB cycle costs more than building it now.</p></div>
+  <div class="pin"><div class="pin-no">BR-11</div><p><b>The gate blocks at segment level, not on the file total,</b> and tier C holds need a named owner. The 143 held here have been open 81 days with no assignee.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>The mapping that ran was modified two days after it was attested.</b> This board and board 01 describe the same failure from two directions.</p></div>
+</aside>
+</section>
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>
