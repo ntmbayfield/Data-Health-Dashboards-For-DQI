@@ -45,15 +45,6 @@ No build step, no dependencies. Every internal link is relative, so the site wor
 repository subpath (`username.github.io/repo-name/`) as well as from a domain root.
 Typefaces load from Google Fonts over HTTPS and fall back to system faces offline.
 
-## Deploying to GitHub Pages
-
-1. Push these files to the repository root on `main`.
-2. Settings → Pages → Source: **Deploy from a branch** → `main` → `/ (root)` → Save.
-3. The site appears at `https://<user>.github.io/<repo>/` within a minute or two.
-
-Note that a GitHub Pages site is publicly readable on the internet regardless of whether the
-source repository is private. Restricting who can view a published site requires GitHub
-Enterprise Cloud with Pages access control.
 
 ## Companion workbook
 
