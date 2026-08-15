@@ -73,37 +73,37 @@
 <section class="reveal" style="margin-top:52px">
   <div class="panel-h" style="margin-bottom:0">The boards <span>each opens on its own page &middot; six dashboards, the reference key, and the source workbook</span></div>
   <div class="cards">
-      <a class="card" href="dashboards/board-01.html">
+      <a class="card" href="board-01.html">
         <div class="card-top"><div class="card-no">01</div>
           <div class="card-hd"><span class="card-t">Integration register &amp; mapping attestation</span><div class="card-meta">Central governance · one integration per row · read quarterly</div></div></div>
         <div class="card-b"><p>The inventory itself, and the two dates that reveal whether a mapping running in production was ever actually reviewed. Also the field write matrix — <b>five pipelines write the same email opt-out field</b>, and nothing at runtime detects it because every write succeeds.</p></div>
         <div class="card-f"><span class="card-codes">F2 · D2 · D12 · D13</span><span class="card-go">Open board</span></div>
       </a>
-      <a class="card" href="dashboards/board-02.html">
+      <a class="card" href="board-02.html">
         <div class="card-top"><div class="card-no">02</div>
           <div class="card-hd"><span class="card-t">Integration health — central view</span><div class="card-meta">Central DQI · unit × integration · rolling 7 days</div></div></div>
         <div class="card-b"><p>Where the alarms live. The <b>create:update canary</b> catches matching logic failing on a run that reported success with zero errors; staleness derives an alert from the absence of data. Three buckets on every row.</p></div>
         <div class="card-f"><span class="card-codes">BR-4 · BR-3 · D14</span><span class="card-go">Open board</span></div>
       </a>
-      <a class="card" href="dashboards/board-03.html">
+      <a class="card" href="board-03.html">
         <div class="card-top"><div class="card-no">03</div>
           <div class="card-hd"><span class="card-t">Graduate import audit</span><div class="card-meta">Semiannual · SIS → Omatic → Salesforce · next 18 Dec</div></div></div>
         <div class="card-b"><p>Runs twice a year, so nobody remembers how it works. The question it answers is not whether the import succeeded but <b>who graduated and did not arrive</b> — 228 of 4,187, found only by reconciling against the registrar's own count.</p></div>
         <div class="card-f"><span class="card-codes">D3 · BR-5 · BR-11</span><span class="card-go">Open board</span></div>
       </a>
-      <a class="card" href="dashboards/board-04.html">
+      <a class="card" href="board-04.html">
         <div class="card-top"><div class="card-no">04</div>
           <div class="card-hd"><span class="card-t">Seven-day processing log</span><div class="card-meta">Daily standup · one run per row · refresh 15 min</div></div></div>
         <div class="card-b"><p>Every run, every trigger, every error. Includes the <b>1,847-row manual upload with no run record</b> — visible only because dedicated integration users make a human bulk write detectable by contrast.</p></div>
         <div class="card-f"><span class="card-codes">BR-2 · BR-1</span><span class="card-go">Open board</span></div>
       </a>
-      <a class="card" href="dashboards/board-05.html">
+      <a class="card" href="board-05.html">
         <div class="card-top"><div class="card-no">05</div>
           <div class="card-hd"><span class="card-t">Data health defect backlog</span><div class="card-meta">State of Salesforce · nightly · SF report library</div></div></div>
         <div class="card-b"><p>Measures the database rather than the pipeline. Two numbers doing two jobs: backlog is the remediation workload, <b>new defects in 30 days is the governance metric</b> — and 2,168 of them trace to one run.</p></div>
         <div class="card-f"><span class="card-codes">D2 · D10</span><span class="card-go">Open board</span></div>
       </a>
-      <a class="card" href="dashboards/board-06.html">
+      <a class="card" href="board-06.html">
         <div class="card-top"><div class="card-no">06</div>
           <div class="card-hd"><span class="card-t">Unit dashboard — one per unit</span><div class="card-meta">Unit lead + staff · one unit · shown for Events</div></div></div>
         <div class="card-b"><p>Data quality score with its four components, the unit's own integrations including shared ones, seven live alerts that each open a worklist, and a 30-day run log — <b>30 days, because the canary needs history to be a canary.</b></p></div>
