@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board 05 — Data health defect backlog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap page">
+<nav class="nav"><a class="home" href="index.html">All dashboards</a><div class="pager"><a href="board-04.html">← Board 04</a><a href="board-06.html">Board 06 →</a></div></nav><div class="page-mast reveal"><div class="eyebrow">Board 05 · mockup, synthetic data</div></div><section class="board reveal">
+<div class="board-main">
+  <div class="plate"><div class="plate-no">05</div><div class="plate-body">
+    <h2>Data health defect backlog</h2>
+    <div class="plate-specs"><span>Measures <i>State of Salesforce</i></span><span>Source <i>SF report library</i></span>
+    <span>Remediation <i>Omatic DBA Assistant</i></span><span>Refresh <i>Nightly</i></span></div></div></div>
+
+  <div class="panel">
+    <div class="tiles">
+      <div class="tile"><div class="tile-k">Open defects — remediation workload</div><div class="tile-v">24,626</div><div class="tile-s">mostly legacy</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Introduced in 30 days — governance metric</div><div class="tile-v">5,502</div><div class="tile-s">22% of backlog, one month</div></div>
+      <div class="tile is-warn"><div class="tile-k">Attributable to a single run</div><div class="tile-v">2,168</div><div class="tile-s">INT-006 · 26 May</div></div>
+      <div class="tile is-alarm"><div class="tile-k">Acknowledged exceptions</div><div class="tile-v">0</div><div class="tile-s">suppression not built</div></div>
+    </div>
+    <div class="method">
+      <div class="method-h">Two numbers doing two different jobs</div>
+      <p><b>Backlog</b> is the remediation workload. It falls slowly and its size is mostly a legacy artefact — a team
+      inheriting 24,000 defects is not a team that created them. <b>Introduced in the last 30 days</b> is the governance
+      metric: it answers whether the problem is still being made. A unit cleaning hard while its pipeline refills the
+      bucket looks excellent on backlog and terrible here, which is the correct reading.</p>
+      <div class="catch"><em>Attribution is the whole point, and it works only because of BR-1</em>
+      <p>2,168 of the 5,502 new defects trace to <b>one run of one integration on one day.</b> Without
+      <span class="mono">Introduced_By_Run__c</span> written at load time, that number is simply "Registrar has a data
+      problem" — which is false, unactionable, and unfair to the people who would be asked to fix it. Provenance is what
+      turns a backlog into a cause.</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">Rules <span>S1 blocks a mailing, a receipt, or a required communication</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Rule</th><th>Defect</th><th>Sev</th><th>Fix</th><th class="num">Open</th><th class="num">New 30d</th><th>Attributed to</th></tr></thead>
+      <tbody>
+        <tr class="row-alarm"><td class="mono">C8</td><td>Deceased, still solicitable</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">34</td><td class="num">6</td><td class="id">INT-002, INT-004</td></tr>
+        <tr class="row-alarm"><td class="mono">E7</td><td>Opted out of email, on an active campaign</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">118</td><td class="num">47</td><td class="id">INT-005, INT-007</td></tr>
+        <tr class="row-alarm"><td class="mono">U7</td><td>Grad-import Contact with no student ID</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">2,168</td><td class="num">2,168</td><td class="id">INT-006 · single run</td></tr>
+        <tr><td class="mono">E1</td><td>Has email, none marked preferred</td><td>S1</td><td><span class="tag t-ok">auto</span></td><td class="num">6,140</td><td class="num">1,209</td><td class="id">INT-003, INT-005</td></tr>
+        <tr><td class="mono">G3</td><td>No Primary Campaign Source on a won gift</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">4,206</td><td class="num">412</td><td class="id">INT-004</td></tr>
+        <tr><td class="mono">A1</td><td>No address, not flagged undeliverable</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">3,455</td><td class="num">214</td><td class="id">INT-006</td></tr>
+        <tr><td class="mono">G1</td><td>No GAU allocation</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">2,918</td><td class="num">388</td><td class="id">INT-004, INT-008</td></tr>
+        <tr><td class="mono">C2</td><td>No constituency, has gifts</td><td>S1</td><td><span class="tag t-warn">assist</span></td><td class="num">1,847</td><td class="num">194</td><td class="id">INT-004, INT-008</td></tr>
+        <tr><td class="mono">C3</td><td>Blank household greeting</td><td>S1</td><td><span class="tag t-ok">auto</span></td><td class="num">1,206</td><td class="num">803</td><td class="id">INT-006</td></tr>
+        <tr><td class="mono">E2</td><td>Preferred email set, the field itself empty</td><td>S1</td><td><span class="tag t-ok">auto</span></td><td class="num">892</td><td class="num">61</td><td class="id">INT-006</td></tr>
+      </tbody></table></div>
+    <div class="method">
+      <div class="method-h">Suppression — the reason data health programmes die</div>
+      <div class="logic">STATUS &nbsp;open · remediated · acknowledged_exception &nbsp;+&nbsp; Suppressed_Until__c · Reason · Suppressed_By__c</div>
+      <p>Zero acknowledged exceptions today, because the mechanism has not been built.</p>
+      <div class="catch"><em>What happens without it</em>
+      <p>Some defects genuinely cannot or should not be fixed. Without a reviewed-and-accepted state carrying a reviewer,
+      a reason and a re-review date, <b>the same few hundred unfixable records appear on every monthly report forever.</b>
+      Staff learn within two cycles that the list contains known noise, stop reading it carefully, and then miss the new
+      items among the old. The board is dead long before anyone declares it dead. It costs almost nothing to build now
+      and is close to unrecoverable once trust has gone.</p></div>
+    </div>
+  </div>
+</div>
+<aside class="gutter">
+  <div class="gutter-h">Board 05</div>
+  <div class="pin"><div class="pin-no crit">D2</div><p><b>E7 is the opt-out conflict made visible.</b> 118 contacts opted out and still on active campaigns, 47 this month, attributed to two of the five pipelines that write the field. A governance failure showing up as a data defect.</p></div>
+  <div class="pin"><div class="pin-no">D10</div><p><b>Detection first.</b> The Salesforce report library has standalone value and no middleware dependency. Confirm DBA Assistant licensing on a Salesforce-target subscription before the remediation column carries a date.</p></div>
+  <div class="pin"><div class="pin-no">—</div><p><b>Ten S1 rules, not forty.</b> Start with C8 and E7 — small, urgent, and the two most embarrassing if they reach a donor.</p></div>
+</aside>
+</section>
+<div class="foot">
+  Review mockups v2 · 9 integrations, 2 shared, 5 units, 7 source systems · proof of concept, scales to 30 units ·
+  Companion workbook: integration-register-weeks-1-2.xlsx · All figures synthetic
+</div>
+</div>
+<script>document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.animationDelay=(i*70)+'ms';});</script>
+</body>
+</html>
